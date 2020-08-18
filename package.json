@@ -1,6 +1,6 @@
 {
   "name": "filedirname",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ponyfill for __filename and __dirname in ESM environments (Deno, .mjs)",
   "homepage": "https://github.com/bevry/filedirname",
   "license": "MIT",
@@ -60,7 +60,7 @@
     }
   },
   "funding": "https://bevry.me/fund",
-  "author": "2020+ Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+  "author": "2020+ Benjamin Lupton <b@lupton.cc> (https://balupton.com)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
@@ -176,5 +176,7 @@
     "singleQuote": true
   },
   "deno": "edition-deno/index.ts",
-  "contributors": []
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ]
 }
