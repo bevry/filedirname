@@ -178,5 +178,9 @@
   "deno": "edition-deno/index.ts",
   "contributors": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ]
+  ],
+  "boundation": {
+    "desiredNodeVersion": 14,
+    "desiredNodeOnly": true
+  }
 }
