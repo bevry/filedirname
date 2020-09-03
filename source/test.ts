@@ -11,21 +11,24 @@ function verify(__filename: string, __dirname: string) {
 }
 
 kava.suite('filedirname', function (suite, test) {
-	test('import.meta.url', function () {
-		console.log('import.meta.url:', import.meta.url)
-		const { __filename, __dirname } = filedirname(import.meta.url)
+	test('caller', function () {
+		const [__filename, __dirname] = filedirname()
 		verify(__filename, __dirname)
 	})
-	// test('/dir/file.js', function () {
-	// 	const { __filename, __dirname } = filedirname('/dir/file.js')
-	// 	verify(__filename, __dirname)
-	// })
+	test('error', function () {
+		const [__filename, __dirname] = filedirname(new Error())
+		verify(__filename, __dirname)
+	})
+	test('/dir/file.js', function () {
+		const [__filename, __dirname] = filedirname('/dir/file.js')
+		verify(__filename, __dirname)
+	})
 	test('file:///dir/file.js', function () {
-		const { __filename, __dirname } = filedirname('file:///dir/file.js')
+		const [__filename, __dirname] = filedirname('file:///dir/file.js')
 		verify(__filename, __dirname)
 	})
 	test('https://dir/file.js', function () {
-		const { __filename, __dirname } = filedirname('https://dir/file.js')
+		const [__filename, __dirname] = filedirname('https://dir/file.js')
 		verify(__filename, __dirname)
 	})
 })

@@ -7,7 +7,6 @@
     "moduleResolution": "Node",
     "strict": true,
     "target": "ESNext",
-    "lib": ["ESNext"],
     "module": "ESNext"
   },
   "include": ["source"]

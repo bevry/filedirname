@@ -1,24 +1,30 @@
 {
   "name": "filedirname",
-  "version": "1.0.2",
-  "description": "Ponyfill for __filename and __dirname in ESM environments (Deno, .mjs)",
+  "version": "2.0.0",
+  "description": "Fetch the current file and directory path, no matter your environment (Deno, Node.js, Web Browsers, ESM, CJS)",
   "homepage": "https://github.com/bevry/filedirname",
   "license": "MIT",
   "keywords": [
     "__dirname",
     "__filename",
+    "commonjs",
     "deno",
     "deno-edition",
     "deno-entry",
     "denoland",
+    "directory",
     "dirname",
     "ecmascript",
     "esm",
     "export-default",
+    "file",
     "filename",
     "import",
     "mjs",
+    "modules",
     "node",
+    "path",
+    "paths",
     "polyfill",
     "typed",
     "types",
@@ -64,6 +70,9 @@
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+  ],
   "bugs": {
     "url": "https://github.com/bevry/filedirname/issues"
   },
@@ -84,6 +93,19 @@
         "import"
       ],
       "engines": false
+    },
+    {
+      "description": "TypeScript compiled against ESNext for Node.js 14 with Require for modules",
+      "directory": "edition-esnext",
+      "entry": "index.js",
+      "tags": [
+        "javascript",
+        "esnext",
+        "require"
+      ],
+      "engines": {
+        "node": "14"
+      }
     },
     {
       "description": "TypeScript compiled against ESNext for Node.js with Import for modules",
@@ -115,18 +137,23 @@
   ],
   "types": "./compiled-types/",
   "type": "module",
-  "main": "./edition-node-esm/index.js",
+  "main": "edition-esnext/index.js",
   "exports": {
     "node": {
-      "import": "./edition-node-esm/index.js"
+      "import": "./edition-node-esm/index.js",
+      "require": "./edition-esnext/index.js"
     }
+  },
+  "deno": "edition-deno/index.ts",
+  "dependencies": {
+    "get-current-line": "^6.0.0"
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
     "assert-helpers": "^7.0.1",
-    "eslint": "^7.7.0",
+    "eslint": "^7.8.1",
     "eslint-config-bevry": "^3.19.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -137,12 +164,13 @@
     "surge": "^0.21.6",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2",
-    "valid-directory": "^3.1.0"
+    "valid-directory": "^3.2.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-node-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-esnext && npm run our:compile:edition-node-esm && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
+    "our:compile:edition-esnext": "tsc --module commonjs --target ESNext --outDir ./edition-esnext --project tsconfig.json && ( test ! -d edition-esnext/source || ( mv edition-esnext/source edition-temp && rm -Rf edition-esnext && mv edition-temp edition-esnext ) ) && echo '{\"type\": \"commonjs\"}' > edition-esnext/package.json",
     "our:compile:edition-node-esm": "tsc --module ESNext --target ESNext --outDir ./edition-node-esm --project tsconfig.json && ( test ! -d edition-node-esm/source || ( mv edition-node-esm/source edition-temp && rm -Rf edition-node-esm && mv edition-temp edition-node-esm ) ) && echo '{\"type\": \"module\"}' > edition-node-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -Rf compiled-types && mv edition-temp compiled-types ) )",
     "our:deploy": "echo no need for this project",
@@ -164,7 +192,7 @@
     "our:verify:directory": "valid-directory",
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:prettier": "prettier --write .",
-    "test": "node ./edition-node-esm/test.js"
+    "test": "node ./edition-esnext/test.js"
   },
   "eslintConfig": {
     "extends": [
@@ -175,12 +203,9 @@
     "semi": false,
     "singleQuote": true
   },
-  "deno": "edition-deno/index.ts",
-  "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
   "boundation": {
-    "desiredNodeVersion": 14,
-    "desiredNodeOnly": true
+    "targetModules": [
+      "import"
+    ]
   }
 }
