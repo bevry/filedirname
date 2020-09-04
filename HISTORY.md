@@ -1,5 +1,9 @@
 # History
 
+## v2.3.0 2020 September 4
+
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v2.2.0 2020 September 4
 
 -   Properly build to include support for CommonJS environment and Node 10 and above (intention of v2.0.0)

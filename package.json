@@ -1,6 +1,6 @@
 {
   "name": "filedirname",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Fetch the current file and directory path, no matter your environment (Deno, Node.js, Web Browsers, ESM, CJS)",
   "homepage": "https://github.com/bevry/filedirname",
   "license": "MIT",
@@ -90,6 +90,7 @@
       "directory": "source",
       "entry": "index.ts",
       "tags": [
+        "source",
         "typescript",
         "import"
       ],
@@ -100,6 +101,7 @@
       "directory": "edition-esnext",
       "entry": "index.js",
       "tags": [
+        "compiled",
         "javascript",
         "esnext",
         "require"
@@ -114,6 +116,7 @@
       "directory": "edition-esnext-esm",
       "entry": "index.js",
       "tags": [
+        "compiled",
         "javascript",
         "esnext",
         "import"
@@ -155,19 +158,19 @@
     "@bevry/update-contributors": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@typescript-eslint/parser": "^4.0.1",
-    "assert-helpers": "^7.1.0",
+    "assert-helpers": "^7.2.0",
     "eslint": "^7.8.1",
-    "eslint-config-bevry": "^3.19.0",
+    "eslint-config-bevry": "^3.22.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "kava": "^5.11.0",
-    "make-deno-edition": "^1.1.0",
+    "make-deno-edition": "^1.1.1",
     "prettier": "^2.1.1",
     "projectz": "^2.15.0",
     "surge": "^0.21.6",
     "typedoc": "^0.19.0",
     "typescript": "^4.0.2",
-    "valid-directory": "^3.2.0"
+    "valid-directory": "^3.3.0"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",

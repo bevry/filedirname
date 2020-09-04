@@ -106,7 +106,7 @@ console.log({ __filename, __dirname })
 <a href="https://deno.land" title="Deno is a secure runtime for JavaScript and TypeScript, it is an alternative for Node.js"><h3>Deno</h3></a>
 
 ``` typescript
-import pkg from 'https://unpkg.com/filedirname@^2.2.0/edition-deno/index.ts'
+import pkg from 'https://unpkg.com/filedirname@^2.3.0/edition-deno/index.ts'
 ```
 
 <h3><a href="https://editions.bevry.me" title="Editions are the best way to produce and consume packages you care about.">Editions</a></h3>
