@@ -1,6 +1,6 @@
 {
   "name": "filedirname",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Fetch the current file and directory path, no matter your environment (Deno, Node.js, Web Browsers, ESM, CJS)",
   "homepage": "https://github.com/bevry/filedirname",
   "license": "MIT",
@@ -82,7 +82,7 @@
     "url": "https://github.com/bevry/filedirname.git"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=10"
   },
   "editions": [
     {
@@ -96,7 +96,21 @@
       "engines": false
     },
     {
-      "description": "TypeScript compiled against ESNext for Node.js 14 with Import for modules",
+      "description": "TypeScript compiled against ESNext for Node.js 10 || 12 || 13 || 14 with Require for modules",
+      "directory": "edition-esnext",
+      "entry": "index.js",
+      "tags": [
+        "javascript",
+        "esnext",
+        "require"
+      ],
+      "engines": {
+        "node": "10 || 12 || 13 || 14",
+        "browsers": false
+      }
+    },
+    {
+      "description": "TypeScript compiled against ESNext for Node.js 12 || 13 || 14 with Import for modules",
       "directory": "edition-esnext-esm",
       "entry": "index.js",
       "tags": [
@@ -105,7 +119,7 @@
         "import"
       ],
       "engines": {
-        "node": "14",
+        "node": "12 || 13 || 14",
         "browsers": false
       }
     },
@@ -126,10 +140,11 @@
   ],
   "types": "./compiled-types/",
   "type": "module",
-  "main": "edition-esnext-esm/index.js",
+  "main": "edition-esnext/index.js",
   "exports": {
     "node": {
-      "import": "./edition-esnext-esm/index.js"
+      "import": "./edition-esnext-esm/index.js",
+      "require": "./edition-esnext/index.js"
     }
   },
   "deno": "edition-deno/index.ts",
@@ -156,8 +171,9 @@
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
-    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-esnext-esm && npm run our:compile:types",
+    "our:compile": "npm run our:compile:deno && npm run our:compile:edition-esnext && npm run our:compile:edition-esnext-esm && npm run our:compile:types",
     "our:compile:deno": "make-deno-edition --attempt",
+    "our:compile:edition-esnext": "tsc --module commonjs --target ESNext --outDir ./edition-esnext --project tsconfig.json && ( test ! -d edition-esnext/source || ( mv edition-esnext/source edition-temp && rm -Rf edition-esnext && mv edition-temp edition-esnext ) ) && echo '{\"type\": \"commonjs\"}' > edition-esnext/package.json",
     "our:compile:edition-esnext-esm": "tsc --module ESNext --target ESNext --outDir ./edition-esnext-esm --project tsconfig.json && ( test ! -d edition-esnext-esm/source || ( mv edition-esnext-esm/source edition-temp && rm -Rf edition-esnext-esm && mv edition-temp edition-esnext-esm ) ) && echo '{\"type\": \"module\"}' > edition-esnext-esm/package.json",
     "our:compile:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --declarationMap --declarationDir ./compiled-types && ( test ! -d compiled-types/source || ( mv compiled-types/source edition-temp && rm -Rf compiled-types && mv edition-temp compiled-types ) )",
     "our:deploy": "echo no need for this project",
@@ -179,7 +195,7 @@
     "our:verify:directory": "valid-directory",
     "our:verify:eslint": "eslint --fix --ignore-pattern '**/*.d.ts' --ignore-pattern '**/vendor/' --ignore-pattern '**/node_modules/' --ext .mjs,.js,.jsx,.ts,.tsx ./source",
     "our:verify:prettier": "prettier --write .",
-    "test": "node ./edition-esnext-esm/test.js"
+    "test": "node ./edition-esnext/test.js"
   },
   "eslintConfig": {
     "extends": [
@@ -189,10 +205,5 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "boundation": {
-    "targetModules": [
-      "import"
-    ]
   }
 }
