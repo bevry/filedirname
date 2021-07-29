@@ -1,6 +1,6 @@
 {
   "name": "filedirname",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Fetch the current file and directory path, no matter your environment (Deno, Node.js, Web Browsers, ESM, CJS)",
   "homepage": "https://github.com/bevry/filedirname",
   "license": "MIT",
@@ -133,21 +133,21 @@
     }
   },
   "dependencies": {
-    "get-current-line": "^6.4.0"
+    "get-current-line": "^6.5.0"
   },
   "devDependencies": {
     "@bevry/update-contributors": "^1.19.0",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
-    "assert-helpers": "^8.2.0",
+    "assert-helpers": "^8.4.0",
     "eslint": "^7.31.0",
-    "eslint-config-bevry": "^3.25.0",
+    "eslint-config-bevry": "^3.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "kava": "^5.14.0",
     "make-deno-edition": "^1.3.0",
     "prettier": "^2.3.2",
-    "projectz": "^2.18.0",
+    "projectz": "^2.21.0",
     "surge": "^0.23.0",
     "typedoc": "^0.21.4",
     "typescript": "4.3.5",

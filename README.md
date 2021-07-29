@@ -35,7 +35,7 @@ Fetch the current file and directory path, no matter your environment (Deno, Nod
 
 ## Usage
 
-[Complete API Documentation.](http://master.filedirname.bevry.surge.sh/docs/globals.html)
+[Complete API Documentation.](http://master.filedirname.bevry.surge.sh/docs/)
 
 ### Without Arguments
 
