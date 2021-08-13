@@ -37,13 +37,13 @@ export function filedirnameFromCaller(): Result {
 
 /* eslint-disable no-redeclare */
 /** Fetch the file and directory paths from the caller. */
-function filedirname(): Result
+export function filedirname(): Result
 /** Fetch the file and directory paths from the Error instance. */
-function filedirname(arg: Error): Result
+export function filedirname(arg: Error): Result
 /** Fetch the file and directory paths from a path, uri, or `import.meta.url`. */
-function filedirname(arg: string): Result
+export function filedirname(arg: string): Result
 /** Fetch the file and directory paths from one of the overloads. */
-function filedirname(arg?: Error | string): Result {
+export function filedirname(arg?: Error | string): Result {
 	// nothing
 	if (arg == null) {
 		return filedirnameFromCaller()
