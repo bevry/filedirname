@@ -31,7 +31,7 @@ export function filedirnameFromCaller(): Result {
 			method: 'filedirname',
 			frames: 0,
 			immediate: false,
-		}).file,
+		}).file
 	)
 }
 
