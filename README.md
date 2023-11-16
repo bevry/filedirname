@@ -51,8 +51,8 @@ import filedirname from 'filedirname'
 const filedirname = require('filedirname').default
 
 // usage
-const [__filename, __dirname] = filedirname()
-console.log({ __filename, __dirname })
+const [file, dir] = filedirname()
+console.log({ file, dir })
 ```
 
 ### Via Error
@@ -70,8 +70,8 @@ import filedirname from 'filedirname'
 const filedirname = require('filedirname').default
 
 // usage
-const [__filename, __dirname] = filedirname(new Error())
-console.log({ __filename, __dirname })
+const [file, dir] = filedirname(new Error())
+console.log({ file, dir })
 ```
 
 ### Via `import.meta.url`
@@ -87,8 +87,8 @@ import filedirname from 'https://unpkg.com/filedirname'
 import filedirname from 'filedirname'
 
 // usage
-const [__filename, __dirname] = filedirname(import.meta.url)
-console.log({ __filename, __dirname })
+const [file, dir] = filedirname(import.meta.url)
+console.log({ file, dir })
 ```
 
 <!-- INSTALL/ -->
