@@ -1,20 +1,31 @@
-import { fileURLToPath, URL } from 'url'
-import { dirname } from 'path'
+// external
 import getCurrentLine, { getFileFromError } from 'get-current-line'
+import fileURLToPathShim from '@bevry/file-url-to-path'
 
+// builtin
+import { fileURLToPath as fileURLToPathNode } from 'url'
+import { dirname, sep } from 'path'
+
+// types
 export type Result = [file: string, directory: string]
+
+/** If supported by our environment, ensure we have a filepath rather than a URL. */
+function filepath(path: string): string {
+	// if already a path, or if a URI that cannot be converted, return as is
+	if (!path.startsWith('file:')) return path
+	// otherwise convert file: to path
+	if (typeof fileURLToPathNode !== 'undefined') {
+		// Node.js v10+
+		return fileURLToPathNode(path)
+	} else {
+		// Node.js <v10
+		return fileURLToPathShim(path, sep)
+	}
+}
 
 /** Fetch the file and directory paths from a path, uri, or `import.meta.url` */
 export function filedirnameFromPath(path: string): Result {
-	let file
-	if (path.includes('://')) {
-		// is a url, e.g. file://, or https://
-		const url = new URL(path)
-		file = url.protocol === 'file:' ? fileURLToPath(url) : url.href
-	} else {
-		// is already a typical path
-		file = path
-	}
+	const file = filepath(path)
 	const directory = dirname(file)
 	return [file, directory]
 }
