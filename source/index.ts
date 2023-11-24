@@ -9,7 +9,10 @@ import { dirname, sep } from 'path'
 // types
 export type Result = [file: string, directory: string]
 
-/** If supported by our environment, ensure we have a filepath rather than a URL. */
+/**
+ * Ensure we have a filepath rather than a URL.
+ * Assumes the path is correct, in that it uses the correct seperator and is already resolved, as we do not do any modifications if not a file: URL.
+ */
 function filepath(path: string): string {
 	// if already a path, or if a URI that cannot be converted, return as is
 	if (!path.startsWith('file:')) return path

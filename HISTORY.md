@@ -1,5 +1,9 @@
 # History
 
+## v3.0.1 2023 November 24
+
+-   Correct conformance with Node.js
+
 ## v3.0.0 2023 November 24
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
