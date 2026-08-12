@@ -215,7 +215,7 @@
   "type": "module",
   "main": "index.cjs",
   "exports": {
-    "node": {
+    ".": {
       "types": "./edition-types/index.d.ts",
       "import": "./edition-es2022-esm/index.js",
       "default": "./index.cjs",
